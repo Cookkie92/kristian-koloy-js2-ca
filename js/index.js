@@ -16,7 +16,7 @@ async function getItems() {
             <h1>${items[i].title}</h1>
            <p> ${items[i].author}</p>
             <p>${items[i].summary}</p>
-            <button>
+            <button>Fkn button</button>
             </div>
         `;
     }

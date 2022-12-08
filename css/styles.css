@@ -8,3 +8,8 @@
   padding-top: 15px;
   padding-bottom: 15px;
 }
+button {
+  height: 20px;
+  width: 80px;
+  margin: 0 auto;
+}
