@@ -5,10 +5,20 @@ import { handleClick } from "./components/toggleItem.js";
 import { baseUrl } from "./settings/api.js";
 import { getSavedFavorites } from "./components/utils/favFunctions.js";
 const itemsContainer = document.querySelector(".results");
-async function getItems() {
+
+export async function getArticles() {
+  const response = await fetch(baseUrl);
+  const articles = await response.json();
+
+  return articles;
+}
+export async function getItems(articles) {
   try {
-    const response = await fetch(baseUrl);
-    const articles = await response.json();
+    itemsContainer.innerHTML = "";
+
+    if (!articles) {
+      articles = await getArticles();
+    }
 
     console.log();
     const savedFavs = getSavedFavorites();
