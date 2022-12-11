@@ -1,4 +1,3 @@
-//this function will toggle a item in and out of an array stored in localstorage
 import { getSavedFavorites } from "./utils/favFunctions.js";
 import { saveFavorites } from "./utils/favFunctions.js";
 export function handleClick() {

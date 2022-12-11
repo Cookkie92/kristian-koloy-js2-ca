@@ -1,6 +1,3 @@
-//main page of my javascript..
-//here i will have the framework of all my functions inside a async fetch function
-// import { renderProducts } from "./components/renderItems.js";
 import { handleClick } from "./components/toggleItem.js";
 import { baseUrl } from "./settings/api.js";
 import { getSavedFavorites } from "./components/utils/favFunctions.js";
