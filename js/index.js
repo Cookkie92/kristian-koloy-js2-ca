@@ -28,7 +28,8 @@ export async function getItems(articles) {
       itemsContainer.innerHTML += `
       <div class="results">
             <h1>${article.title}</h1>
-            <p> ${article.author}</p>
+            <p>Author: ${article.author}</p>
+            Summary:
             <p>${article.summary}</p>
             <i class="${isArticleFavorite} fa-heart" data-id="${article.id}" data-title="${article.title}"></i>
       </div>

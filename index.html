@@ -13,18 +13,21 @@
   </head>
   <body>
     <header>
+      <div class="logo">Articles</div>
       <nav>
-        <a href="index.html"><li>Home</li></a>
-        <a href="favorites.html"><li>Favorites</li></a>
+        <div class=".nav-links">
+          <li><a class="current" href="index.html">Home</a></li>
+          <li><a href="favorites.html">Favorites</a></li>
+        </div>
       </nav>
     </header>
     <main>
       <div class="input-field">
-        <input class="search" placeholder="search" />
+        <input class="search" placeholder="search..." />
       </div>
       <div class="results"></div>
     </main>
-    <footer>This is a flippin footer</footer>
+
     <script src="/js/index.js" type="module"></script>
     <script src="/js/components/filter.js" type="module"></script>
   </body>
