@@ -1,26 +1,33 @@
 //main page of my javascript..
 //here i will have the framework of all my functions inside a async fetch function
 // import { renderProducts } from "./components/renderItems.js";
-// import { baseUrl } from "./settings/api.js";
+import { handleClick } from "./components/toggleItem.js";
+import { baseUrl } from "./settings/api.js";
+import { getSavedFavorites } from "./components/utils/favFunctions.js";
 const itemsContainer = document.querySelector(".results");
-const baseUrl = "http://localhost:1337/articles/";
 async function getItems() {
   try {
     const response = await fetch(baseUrl);
-    const items = await response.json();
+    const articles = await response.json();
 
     console.log();
+    const savedFavs = getSavedFavorites();
+    articles.forEach((article) => {
+      const isObjectFavorite = savedFavs.find(function (fav) {
+        return parseInt(fav.id) === article.id;
+      });
+      const isArticleFavorite = isObjectFavorite ? "fa" : "far";
 
-    items.forEach((articles) => {
       itemsContainer.innerHTML += `
       <div class="results">
-            <h1>${articles.title}</h1>
-            <p> ${articles.author}</p>
-            <p>${articles.summary}</p>
-            <i class="fa fa-heart" data-id="${articles.id}" data-title="${articles.title}"></i>
+            <h1>${article.title}</h1>
+            <p> ${article.author}</p>
+            <p>${article.summary}</p>
+            <i class="${isArticleFavorite} fa-heart" data-id="${article.id}" data-title="${article.title}"></i>
       </div>
       `;
     });
+
     const heartButtons = document.querySelectorAll(".results i");
 
     heartButtons.forEach((button) => {
@@ -33,51 +40,9 @@ async function getItems() {
 
 getItems();
 
-function handleClick() {
-  event.target.classList.toggle("fa");
-  event.target.classList.toggle("far");
-
-  const id = this.dataset.id;
-  const title = this.dataset.title;
-  const author = this.dataset.author;
-  const summary = this.dataset.summary;
-
-  const savedFavs = getSavedFavorites();
-
-  const articleExist = savedFavs.find(function (fav) {
-    return fav.id === id;
-  });
-
-  console.log("articleExist", articleExist);
-
-  if (articleExist === undefined) {
-    const article = {
-      author: author,
-      title: title,
-      summary: summary,
-      id: id,
-    };
-    savedFavs.push(article);
-    saveFavorites(savedFavs);
-  } else {
-    const newFavs = savedFavs.filter((fav) => fav.id !== id);
-    saveFavorites(newFavs);
-  }
-}
-
-function getSavedFavorites() {
-  const favs = localStorage.getItem("favorites");
-
-  if (favs === null) {
-    return [];
-  } else {
-    return JSON.parse(favs);
-  }
-}
-
-function saveFavorites(favs) {
-  localStorage.setItem("favorites", JSON.stringify(favs));
-}
+// export function saveFavorites(favs) {
+//   localStorage.setItem("favorites", JSON.stringify(favs));
+// }
 
 // let articlesArray = [];
 // let getArticles = JSON.parse(localStorage.getItem("articles"));
@@ -93,3 +58,50 @@ function saveFavorites(favs) {
 // });
 
 // localStorage.setItem("articles", JSON.stringify(articlesArray));
+// if (articleExist === undefined) {
+//   const article = {
+//     author: author,
+//     title: title,
+//     summary: summary,
+//     id: id,
+//   };
+//   savedFavs.push(article);
+//   saveFavorites(savedFavs);
+// }
+// else {
+//   const newFavs = savedFavs.filter((fav) => fav.id !== id);
+//   saveFavorites(newFavs);
+// }
+// function handleClick() {
+//   event.target.classList.toggle("fa");
+//   event.target.classList.toggle("far");
+
+//   const id = this.dataset.id;
+//   const title = this.dataset.title;
+//   const author = this.dataset.author;
+//   const summary = this.dataset.summary;
+
+//   let savedFavs = getSavedFavorites();
+
+//   const articleExist = savedFavs.find(function (fav) {
+//     return fav.id === id;
+//   });
+
+//   console.log("articleExist", articleExist);
+
+//   if (articleExist) {
+//     savedFavs = savedFavs.filter((fav) => fav.id !== id);
+//     return saveFavorites(savedFavs);
+//   }
+//   const article = {
+//     author: author,
+//     title: title,
+//     summary: summary,
+//     id: id,
+//   };
+//   savedFavs.push(article);
+//   saveFavorites(savedFavs);
+// }
+// if (isObjectFavorite) {
+//   fontHeart = "fa";
+// }
