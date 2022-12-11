@@ -1,4 +1,3 @@
-// import { populateFavs } from "../../favorites";
 export function getSavedFavorites() {
   const favs = localStorage.getItem("favorites");
 
@@ -12,8 +11,3 @@ export function getSavedFavorites() {
 export function saveFavorites(favs) {
   localStorage.setItem("favorites", JSON.stringify(favs));
 }
-
-// export function clearFavorites() {
-//   localStorage.removeItem("favorites");
-//   populateFavs();
-// }

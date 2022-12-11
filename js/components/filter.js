@@ -3,10 +3,8 @@ import { getItems } from "../index.js";
 import { getArticles } from "../index.js";
 
 const search = document.querySelector(".search");
-// if (!article.title.includes(searchField)) return;
 
 search.onkeyup = async function () {
-  console.log(event);
   const serachValue = event.target.value.trim().toLowerCase();
   const articles = await getArticles();
 
